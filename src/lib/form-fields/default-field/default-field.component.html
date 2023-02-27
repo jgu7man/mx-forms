@@ -1,0 +1,19 @@
+<ng-container *ngIf="field">
+  <mat-form-field appearance="outline" [matTooltip]="field.info || ''">
+    <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
+    <input matInput
+      [type]="field.type"
+      [id]="field.id"
+      [name]="field.id"
+      [formControl]="control"
+      [required]="field.required"
+      [placeholder]="field.placeholder || ''"
+    />
+    <mat-error *ngIf="control.hasError('required')">
+      Este campo es requerido
+    </mat-error>
+    <ng-container *ngFor="let validation of field.additionalValidations">
+      <mat-error *ngIf="control.hasError(validation.token)">{{ validation.message}}</mat-error>
+    </ng-container>
+  </mat-form-field>
+</ng-container>
