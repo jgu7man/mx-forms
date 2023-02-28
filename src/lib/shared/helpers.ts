@@ -1,6 +1,6 @@
-import { MxField } from "../form-fields/field.model";
+import { MxField, MxFieldModel } from "../form-fields/field.model";
 
-export function setValue(field: MxField, value: any) {
+export function setValue(field: MxFieldModel, value: any) {
     if (typeof value === 'object') {
       if (field) return value[field.id] || '';
       return value || '';

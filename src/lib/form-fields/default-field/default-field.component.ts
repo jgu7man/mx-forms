@@ -11,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { skip, skipWhile, takeUntil } from 'rxjs/operators';
 import { DefaultValueByType, setValue } from '../../shared/helpers';
-import { MxField } from '../field.model';
+import { MxField, MxFieldModel } from '../field.model';
 
 @Component({
   selector: 'mx-default-field',
@@ -20,8 +20,8 @@ import { MxField } from '../field.model';
 })
 export class MxDefaultFieldComponent implements OnInit {
 
-  private _field = new BehaviorSubject<MxField | null>(null);
-  @Input() set field(field: MxField | null) {
+  private _field = new BehaviorSubject<MxFieldModel | null>(null);
+  @Input() set field(field: MxFieldModel | null) {
     this._field.next(field);
   }
 
@@ -66,7 +66,7 @@ export class MxDefaultFieldComponent implements OnInit {
     this._destroyed.complete();
   }
 
-  takeWhileLoad = ([field, value]: [MxField | null, any]) =>
+  takeWhileLoad = ([field, value]: [MxFieldModel | null, any]) =>
     !field && (value === undefined || value === null);
 
   setValidators(): void {

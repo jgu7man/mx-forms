@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
 
-export interface MxField {
+export interface MxFieldModel {
   id: string,
   label: string,
   type: MxField.type,
@@ -14,26 +14,26 @@ export interface MxField {
 }
 
 
-export declare namespace MxField {
+export namespace MxField {
   export interface validations {
     validator: ValidatorFn,
     token: string,
     message: string,
   }
 
-  interface option {
+  export interface option {
     value: any;
     index: number;
   }
 
-  type reference = Pick< MxField,
+  export type reference = Pick< MxFieldModel,
     'id' |
     'label' |
     'index' |
     'visible'
   >
 
-  enum type {
+  export enum type {
     TEXT = 'text',
     EMAIL = 'email',
     PASSWORD = 'password',

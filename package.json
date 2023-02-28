@@ -1,11 +1,27 @@
 {
   "name": "@marxa/forms",
   "version": "0.0.1",
+  "scripts": {
+    "build:local": "ng build @marxa/forms --prod --watch",
+    "compodoc": "npx compodoc -p tsconfig.doc.json --disableSourceCode --disableStyleTab --disablePrivate --disableProtected --disableLifeCycleHooks -t -s -o",
+    "copy:styles": "cpx \"./src/lib/styles/**/*\" \"dist/marxa/devkit/styles\""
+  },
   "peerDependencies": {
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9"
   },
   "dependencies": {
     "tslib": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marxa-digital/mx-auth.git"
+  },
+  "author": {
+    "name": "Jorge Guzman",
+    "email": "jguzman@marxadigital.com"
+  },
+  "publishConfig": {
+    "registry": "https://marxa.jfrog.io/artifactory/api/npm/mx-library-npm/"
   }
 }
