@@ -63,6 +63,8 @@ export namespace MxField {
   export interface NUMBER extends Omit<MxField, 'type'> {
     type: type.NUMBER;
   }
-    FILE = 'file',
+  export interface EMAIL extends Omit<MxField, 'type'> {
+    emailValidationMsg?: string;
+    type: type.EMAIL;
   }
 }
