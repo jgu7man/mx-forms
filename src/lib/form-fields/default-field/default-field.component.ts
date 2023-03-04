@@ -151,35 +151,3 @@ export class MxDefaultFieldComponent implements OnInit {
     );
   }
 }
-
-@Component({
-  selector: 'mx-text-field, [mx-text-field], [mxTextField]',
-  templateUrl: './default-field.component.html'
-})
-export class MxTextFieldComponent
-  extends MxDefaultFieldComponent
-  implements AfterContentChecked
-{
-  ngAfterContentChecked(): void {
-    this.field!.type = MxField.type.TEXT;
-  }
-}
-
-@Component({
-  selector: 'mx-number-field, [mx-number-field], [mxNumberField]',
-  templateUrl: './default-field.component.html'
-})
-export class MxNumberFieldComponent
-  extends MxDefaultFieldComponent
-  implements AfterContentChecked
-{
-  constructor(){
-    super();
-    this.control?.setValue(
-      DefaultValueByType[MxField.type.NUMBER]
-    )
-  }
-  ngAfterContentChecked(): void {
-    this.field!.type = MxField.type.NUMBER;
-  }
-}
