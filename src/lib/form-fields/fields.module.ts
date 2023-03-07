@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MxDefaultFieldComponent } from './default-field/default-field.component';
 import { MxEmailFieldComponent } from './email-field/email-field.component';
 import { MxNumberFieldComponent } from './number-field/number-field.component';
+import { MxPasswordFieldComponent } from './password-field/password-field.component';
 import { MxTextFieldComponent } from './text-field/text-field.component';
 
 const components = [
@@ -14,7 +15,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, MxPasswordFieldComponent],
   imports: [CommonModule, SharedModule],
   exports: [...components]
 })

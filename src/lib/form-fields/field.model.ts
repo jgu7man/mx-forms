@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { PasswordField, PasswordValidations } from './password-field/password-field.model';
 
 /**
  * The MxField interface defines the properties of a field used in the application
@@ -20,23 +21,10 @@ export interface MxField {
   type: MxField.type;
   info?: string;
   // control?: AbstractControl,
-  additionalValidations?: MxField.validations[];
+  additionalValidations?: MxField.validation[];
 }
 
 export namespace MxField {
-  export interface validations {
-    validator: ValidatorFn;
-    token: string;
-    message: string;
-  }
-
-  export interface option {
-    value: any;
-    index: number;
-  }
-
-  export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
-
   export enum type {
     TEXT = 'text',
     EMAIL = 'email',
@@ -56,7 +44,6 @@ export namespace MxField {
     FILE = 'file'
   }
 
-  export type Generic = Omit<MxField, 'type'>;
   export interface TEXT extends Omit<MxField, 'type'> {
     type: type.TEXT;
   }
@@ -66,5 +53,25 @@ export namespace MxField {
   export interface EMAIL extends Omit<MxField, 'type'> {
     emailValidationMsg?: string;
     type: type.EMAIL;
+  }
+  export type PASSWORD = PasswordField;
+
+  export interface option {
+    value: any;
+    index: number;
+  }
+
+  export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
+
+  export type Generic = Omit<MxField, 'type'>;
+
+  export interface validation {
+    validator: ValidatorFn;
+    token: string;
+    message: string;
+  }
+
+  export namespace validations {
+    export type PASSWORD = PasswordValidations;
   }
 }
