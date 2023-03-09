@@ -5,7 +5,19 @@ import { MxField } from '../field.model';
 /**
  * Component for displaying and editing numeric fields.
  * @example
- * <mx-number-field [field]="myNumberField"></mx-number-field>
+ * // Set the configuration of the field.
+ * const numberField: Partial<MxField.NUMBER> = {
+ *   id: 'age',
+ *   label: 'Age',
+ *   required: true,
+ *   visible: true,
+ *   additionalValidations: [
+ *     { type: MxField.ValidationType.MIN_VALUE, value: 0 },
+ *     { type: MxField.ValidationType.MAX_VALUE, value: 150 }
+ *   ]
+ * };
+ * // Pass the configuration to the component.
+ * <mx-number-field [field]="numberField"></mx-number-field>
  * @export
  * @class MxNumberFieldComponent
  * @extends {MxDefaultFieldComponent}
@@ -25,25 +37,8 @@ export class MxNumberFieldComponent extends MxDefaultFieldComponent {
    * @param {boolean} [field.visible] - Whether the field is visible or not.
    * @param {MxField.Type} [field.type=MxField.type.NUMBER] - The type of the field.
    * @param {MxField.Validation[]} [field.additionalValidations] - An array of additional validations for the field.
-   * @example
-   * // Set the configuration of the field.
-   * const numberField: Partial<MxField.NUMBER> = {
-   *   id: 'age',
-   *   label: 'Age',
-   *   required: true,
-   *   visible: true,
-   *   additionalValidations: [
-   *     { type: MxField.ValidationType.MIN_VALUE, value: 0 },
-   *     { type: MxField.ValidationType.MAX_VALUE, value: 150 }
-   *   ]
-   * };
-   * // Pass the configuration to the component.
-   * <mx-number-field [field]="numberField"></mx-number-field>
    */
-  @Input() set field({ type = MxField.type.NUMBER, ...field }: MxField) {
-    this._field.next({ ...field, type });
-  }
-  get field(): MxField {
-    return this._field.getValue();
+  @Input() set field(config: MxField.NUMBER) {
+    this._field.next(config);
   }
 }

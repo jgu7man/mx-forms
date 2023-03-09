@@ -1,4 +1,11 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { skipWhile, takeUntil } from 'rxjs/operators';
@@ -22,13 +29,14 @@ export class MxDefaultFieldComponent implements OnInit {
    * @type {BehaviorSubject<MxField>}
    * @memberof MxDefaultFieldComponent
    */
-  protected _field: BehaviorSubject<MxField> = new BehaviorSubject<MxField>({
-    type: MxField.type.TEXT,
-    id: 'undefined-field',
-    label: 'Label',
-    required: false,
-    visible: true
-  });
+  protected _field: BehaviorSubject<MxField.forAll> =
+    new BehaviorSubject<MxField>({
+      type: MxField.type.TEXT,
+      id: 'undefined-field',
+      label: 'Label',
+      required: false,
+      visible: true
+    });
   private _value: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   /**
@@ -42,7 +50,7 @@ export class MxDefaultFieldComponent implements OnInit {
    * @param {MxField} field - The new value of _field
    * @memberof MxDefaultFieldComponent
    */
-  @Input() set field(field: MxField) {
+  @Input() set field(field: MxField.forAll) {
     this._field.next(field);
   }
 
@@ -84,7 +92,7 @@ export class MxDefaultFieldComponent implements OnInit {
    * @readonly
    * @type {MxField}
    */
-  get field(): MxField {
+  get field(): MxField.forAll {
     return this._field.getValue();
   }
 
@@ -144,7 +152,9 @@ export class MxDefaultFieldComponent implements OnInit {
 
   /** @internal */
   private _setValidators(): void {
-    const validators = (this.field?.additionalValidations || []).map((v) => v.validator);
+    const validators = (this.field?.additionalValidations || []).map(
+      (v) => v.validator
+    );
 
     this.control.setValidators(
       this.field?.required ? [Validators.required, ...validators] : validators

@@ -37,7 +37,6 @@ export class MxEmailFieldComponent extends MxDefaultFieldComponent {
    * @param {MxField.Validation[]} [field.additionalValidations] - An array of additional validations for the field.
    */
   @Input() set field({
-    type = MxField.type.EMAIL,
     additionalValidations = [],
     emailValidationMsg = ValidationMessages.EMAIL,
     ...field
@@ -50,9 +49,6 @@ export class MxEmailFieldComponent extends MxDefaultFieldComponent {
         message: emailValidationMsg
       }
     ];
-    this._field.next({ ...field, type, additionalValidations });
-  }
-  get field(): MxField.EMAIL {
-    return this._field.getValue() as MxField.EMAIL;
+    this._field.next({ ...field, additionalValidations });
   }
 }

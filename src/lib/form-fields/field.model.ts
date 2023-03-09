@@ -1,5 +1,11 @@
 import { ValidatorFn } from '@angular/forms';
-import { PasswordField, PasswordValidations } from './password-field/password-field.model';
+import { MxEmailField } from './email-field/email-field.model';
+import { MxNumberField } from './number-field/number-field.model';
+import {
+  PasswordField,
+  PasswordValidations
+} from './password-field/password-field.model';
+import { MxTextField } from './text-field/text-field.model';
 
 /**
  * The MxField interface defines the properties of a field used in the application
@@ -20,7 +26,6 @@ export interface MxField {
   required: boolean;
   type: MxField.type;
   info?: string;
-  // control?: AbstractControl,
   additionalValidations?: MxField.validation[];
 }
 
@@ -44,16 +49,9 @@ export namespace MxField {
     FILE = 'file'
   }
 
-  export interface TEXT extends Omit<MxField, 'type'> {
-    type: type.TEXT;
-  }
-  export interface NUMBER extends Omit<MxField, 'type'> {
-    type: type.NUMBER;
-  }
-  export interface EMAIL extends Omit<MxField, 'type'> {
-    emailValidationMsg?: string;
-    type: type.EMAIL;
-  }
+  export type TEXT = MxTextField;
+  export type NUMBER = MxNumberField;
+  export type EMAIL = MxEmailField;
   export type PASSWORD = PasswordField;
 
   export interface option {
@@ -63,7 +61,7 @@ export namespace MxField {
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
-  export type Generic = Omit<MxField, 'type'>;
+  export type forAll = MxField | TEXT | NUMBER | EMAIL;
 
   export interface validation {
     validator: ValidatorFn;
