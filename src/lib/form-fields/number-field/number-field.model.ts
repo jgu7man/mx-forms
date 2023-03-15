@@ -6,7 +6,7 @@ export class MxNumberField implements Omit<MxField, 'type'> {
   required: boolean = false;
   info?: string = '';
   additionalValidations?: MxField.validation[] = [];
-  type: MxField.type = MxField.type.NUMBER;
+  type: MxField.type.NUMBER = MxField.type.NUMBER;
   constructor(
     public id: string,
     public label: string,

@@ -1,10 +1,8 @@
 import { ValidatorFn } from '@angular/forms';
 import { MxEmailField } from './email-field/email-field.model';
 import { MxNumberField } from './number-field/number-field.model';
-import {
-  PasswordField,
-  PasswordValidations
-} from './password-field/password-field.model';
+import { MxPasswordField } from './password-field/password-field.model';
+import { PasswordValidations } from './password-field/password-validation.model';
 import { MxTextField } from './text-field/text-field.model';
 
 /**
@@ -52,7 +50,7 @@ export namespace MxField {
   export type TEXT = MxTextField;
   export type NUMBER = MxNumberField;
   export type EMAIL = MxEmailField;
-  export type PASSWORD = PasswordField;
+  export type PASSWORD = MxPasswordField;
 
   export interface option {
     value: any;
@@ -61,7 +59,7 @@ export namespace MxField {
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
-  export type forAll = MxField | TEXT | NUMBER | EMAIL;
+  export type forAll = MxField | TEXT | NUMBER | EMAIL | PASSWORD;
 
   export interface validation {
     validator: ValidatorFn;
@@ -69,7 +67,7 @@ export namespace MxField {
     message: string;
   }
 
-  export namespace validations {
+  export namespace validationTypes {
     export type PASSWORD = PasswordValidations;
   }
 }

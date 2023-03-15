@@ -1,4 +1,4 @@
-import { PasswordValidations } from '../form-fields/password-field/password-field.model';
+import { MxPasswordField } from '../form-fields/password-field/password-validation.model';
 
 export const ValidationMessages = {
   EMAIL: 'Use a valid email address',
@@ -6,9 +6,10 @@ export const ValidationMessages = {
 };
 
 export const PasswordValidationsMessages = {
-  MIN_LENGTH: PasswordValidations.MESSAGES.MIN_LENGTH,
-  MAX_LENGTH: PasswordValidations.MESSAGES.MAX_LENGTH,
-  CHARACTER_CASE: PasswordValidations.MESSAGES.CHARACTER_CASE,
-  NUMBER_REQUIRED: PasswordValidations.MESSAGES.NUMBER_REQUIRED,
-  SPECIAL_CHARACTERS_REQUIRED: PasswordValidations.MESSAGES.SPECIAL_CHARACTERS_REQUIRED
+  MIN_LENGTH: MxPasswordField.MESSAGES.MIN_LENGTH,
+  MAX_LENGTH: MxPasswordField.MESSAGES.MAX_LENGTH,
+  CHARACTER_CASE: MxPasswordField.MESSAGES.CHARACTER_CASE,
+  NUMBER_REQUIRED: MxPasswordField.MESSAGES.NUMBER_REQUIRED,
+  SPECIAL_CHARACTERS_REQUIRED:
+    MxPasswordField.MESSAGES.SPECIAL_CHARACTERS_REQUIRED
 };

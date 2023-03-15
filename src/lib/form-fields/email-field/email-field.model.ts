@@ -7,7 +7,7 @@ export class MxEmailField implements Omit<MxField, 'type'> {
   required: boolean = false;
   info?: string = '';
   additionalValidations?: MxField.validation[] = [];
-  type: MxField.type = MxField.type.EMAIL;
+  type: MxField.type.EMAIL = MxField.type.EMAIL;
   emailValidationMsg?: string = ValidationMessages.EMAIL;
   constructor(
     public id: string,

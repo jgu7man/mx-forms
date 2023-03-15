@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { PasswordValidations } from './password-field.model';
+import { MxPasswordField } from './password-validation.model';
 
 export module PasswordValidators {
   /**
@@ -11,7 +11,7 @@ export module PasswordValidators {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
       const hasLessThanMin = minLength && value.length < minLength;
-      return { [PasswordValidations.TOKEN.MIN_LENGTH]: hasLessThanMin };
+      return { [MxPasswordField.TOKEN.MIN_LENGTH]: hasLessThanMin };
     };
   }
   /**
@@ -23,7 +23,7 @@ export module PasswordValidators {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
       const hasMoreThanMax = maxLength && value.length > maxLength;
-      return { [PasswordValidations.TOKEN.MIN_LENGTH]: hasMoreThanMax };
+      return { [MxPasswordField.TOKEN.MIN_LENGTH]: hasMoreThanMax };
     };
   }
 
@@ -32,12 +32,14 @@ export module PasswordValidators {
   @param {AbstractControl} control - The password control being validated.
   @returns {ValidationErrors} - A ValidationErrors object if the password does not contain both uppercase and lowercase characters.
   */
-  export const hasUpperCaseValidator = (control: AbstractControl): ValidationErrors | null => {
+  export const hasUpperCaseValidator = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     const value = control.value;
     const hasLowerCase = /[a-z]/.test(value);
     const hasUpperCase = /[A-Z]/.test(value);
     if (!hasLowerCase || !hasUpperCase) {
-      return { [PasswordValidations.TOKEN.CHARACTER_CASE]: true };
+      return { [MxPasswordField.TOKEN.CHARACTER_CASE]: true };
     }
     return null;
   };
@@ -47,10 +49,12 @@ export module PasswordValidators {
   @param {AbstractControl} control - The password control being validated.
   @returns {ValidationErrors} - A ValidationErrors object if the password does not contain a numeric character.
   */
-  export const hasCharNumbersValidator = (control: AbstractControl): ValidationErrors | null => {
+  export const hasCharNumbersValidator = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     const value = control.value;
     const hasNumber = /[0-9]/.test(value);
-    return { [PasswordValidations.TOKEN.NUMBER_REQUIRED]: !hasNumber };
+    return { [MxPasswordField.TOKEN.NUMBER_REQUIRED]: !hasNumber };
   };
 
   /**
@@ -58,9 +62,11 @@ export module PasswordValidators {
   @param {AbstractControl} control - The password control being validated.
   @returns {ValidationErrors} - A ValidationErrors object if the password does not contain a special character.
   */
-  export const hasSpecialCharValidator = (control: AbstractControl): ValidationErrors | null => {
+  export const hasSpecialCharValidator = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
     const value = control.value;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-    return { [PasswordValidations.TOKEN.NUMBER_REQUIRED]: !hasSpecialChar };
+    return { [MxPasswordField.TOKEN.NUMBER_REQUIRED]: !hasSpecialChar };
   };
 }

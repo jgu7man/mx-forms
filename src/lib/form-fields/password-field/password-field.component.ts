@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
-import { InitPasswordValidations } from './password-field.model';
+import { PasswordValidationsModel } from './password-validation.model';
 
 /**
  * Component for displaying and editing numeric fields.
@@ -32,7 +32,8 @@ import { InitPasswordValidations } from './password-field.model';
   templateUrl: './password-field.component.html'
 })
 export class MxPasswordFieldComponent extends MxDefaultFieldComponent {
-  validationsConfig = new InitPasswordValidations();
+  private validationsConfig = new PasswordValidationsModel();
+  hide: boolean = false;
 
   /**
    * Receives the password field configuration
@@ -45,9 +46,9 @@ export class MxPasswordFieldComponent extends MxDefaultFieldComponent {
    * @param {MxField.Validation[]} [field.additionalValidations] - An array of additional validations for the field.
    */
   @Input() set field({
-    type = MxField.type.PASSWORD,
     additionalValidations = [],
     validations = this.validationsConfig,
+    hideToggle = true,
     ...field
   }: MxField.PASSWORD) {
     additionalValidations = [
@@ -58,14 +59,7 @@ export class MxPasswordFieldComponent extends MxDefaultFieldComponent {
       validations.requiresNumber,
       validations.requiresSpecialChar
     ];
-    this._field.next({ ...field, type, additionalValidations });
+    this.hide = hideToggle;
+    this._field.next({ ...field, additionalValidations });
   }
-  get field(): MxField.PASSWORD {
-    return {
-      ...this._field.getValue(),
-      hideToggle: true
-    } as MxField.PASSWORD;
-  }
-
-  hide: boolean = false;
 }
