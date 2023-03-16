@@ -1,0 +1,24 @@
+<ng-container *ngIf="field">
+  <mat-form-field appearance="outline" [matTooltip]="field.info || ''">
+    <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
+    <textarea matInput
+      [id]="field.id"
+      [name]="field.id"
+      [formControl]="control"
+      [required]="field.required"
+      [placeholder]="field.placeholder || ''"
+      [mat-autosize]="field.size.autosize ?? false"
+      [rows]="field.size.rows"
+      [cols]="field.size.cols"
+    ></textarea>
+    <ng-container *ngIf="field.maxCharLimit.limit">
+      <mat-hint align="end">{{control.value.length}} / {{field.maxCharLimit.limit}}</mat-hint>
+    </ng-container>
+    <mat-error *ngIf="control.hasError('required')">
+      Este campo es requerido
+    </mat-error>
+    <ng-container *ngFor="let validation of field.additionalValidations">
+      <mat-error *ngIf="control.hasError(validation.token)">{{ validation.message}}</mat-error>
+    </ng-container>
+  </mat-form-field>
+</ng-container>

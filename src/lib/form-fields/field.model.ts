@@ -5,6 +5,7 @@ import { MxPasswordField } from './password-field/password-field.model';
 import { PasswordValidations } from './password-field/password-validation.model';
 import { MxPhoneField } from './phone-field/phone-field.model';
 import { MxTextField } from './text-field/text-field.model';
+import { MxTextareaField } from './textarea-field/textarea-field.model';
 
 /**
  * The MxField interface defines the properties of a field used in the application
@@ -53,6 +54,7 @@ export namespace MxField {
   export type EMAIL = MxEmailField;
   export type PASSWORD = MxPasswordField;
   export type PHONE = MxPhoneField;
+  export type TEXTAREA = MxTextareaField;
 
   export interface option {
     value: any;
@@ -61,7 +63,7 @@ export namespace MxField {
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
-  export type forAll = MxField | TEXT | NUMBER | EMAIL | PASSWORD;
+  export type forAll = MxField | TEXT | NUMBER | EMAIL | PASSWORD | TEXTAREA;
 
   export interface validation {
     validator: ValidatorFn;

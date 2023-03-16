@@ -3,7 +3,8 @@ import { PasswordValidations } from '../form-fields/password-field/password-vali
 export const ValidationMessages = {
   EMAIL: 'Use a valid email address',
   REQUIRED: 'This field is required',
-  PHONE: 'This no looks like a phone'
+  PHONE: 'This no looks like a phone',
+  CHAR_LIMIT: 'You exceeded character limit.'
 };
 
 export const PasswordValidationsMessages = {

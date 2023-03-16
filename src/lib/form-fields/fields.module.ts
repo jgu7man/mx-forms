@@ -7,6 +7,7 @@ import { MxNumberFieldComponent } from './number-field/number-field.component';
 import { MxPasswordFieldComponent } from './password-field/password-field.component';
 import { MxPhoneFieldComponent } from './phone-field/phone-field.component';
 import { MxTextFieldComponent } from './text-field/text-field.component';
+import { MxTextareaFieldComponent } from './textarea-field/textarea-field.component';
 
 const components = [
   MxDefaultFieldComponent,
@@ -14,7 +15,8 @@ const components = [
   MxNumberFieldComponent,
   MxEmailFieldComponent,
   MxPhoneFieldComponent,
-  MxPasswordFieldComponent
+  MxPasswordFieldComponent,
+  MxTextareaFieldComponent
 ];
 
 @NgModule({
