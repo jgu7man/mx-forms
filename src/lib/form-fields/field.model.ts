@@ -3,6 +3,7 @@ import { MxEmailField } from './email-field/email-field.model';
 import { MxNumberField } from './number-field/number-field.model';
 import { MxPasswordField } from './password-field/password-field.model';
 import { PasswordValidations } from './password-field/password-validation.model';
+import { MxPhoneField } from './phone-field/phone-field.model';
 import { MxTextField } from './text-field/text-field.model';
 
 /**
@@ -32,7 +33,7 @@ export namespace MxField {
     TEXT = 'text',
     EMAIL = 'email',
     PASSWORD = 'password',
-    PHONE = 'phone',
+    PHONE = 'tel',
     NUMBER = 'number',
     TEXTAREA = 'textarea',
     SELECT = 'select',
@@ -51,6 +52,7 @@ export namespace MxField {
   export type NUMBER = MxNumberField;
   export type EMAIL = MxEmailField;
   export type PASSWORD = MxPasswordField;
+  export type PHONE = MxPhoneField;
 
   export interface option {
     value: any;
