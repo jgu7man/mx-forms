@@ -30,7 +30,7 @@ export class MxDefaultFieldComponent implements OnInit {
    * @memberof MxDefaultFieldComponent
    */
   protected _field: BehaviorSubject<MxField.forAll> =
-    new BehaviorSubject<MxField>({
+    new BehaviorSubject<MxField.forAll>({
       type: MxField.type.TEXT,
       id: 'undefined-field',
       label: 'Label',
@@ -147,7 +147,7 @@ export class MxDefaultFieldComponent implements OnInit {
   }
 
   /** @internal */
-  private _takeWhileLoad = ([field, value]: [MxField | null, any]) =>
+  private _takeWhileLoad = ([field, value]: [MxField.forAll | null, any]) =>
     !field && (value === undefined || value === null);
 
   /** @internal */

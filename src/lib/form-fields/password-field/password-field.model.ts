@@ -4,25 +4,48 @@ import {
   PasswordValidationsModel
 } from './password-validation.model';
 
+/**
+ * Class to set the password field properties
+ *
+ * @export
+ * @class MxPasswordField
+ * @implements {Omit<MxField, 'type'>}
+ */
 export class MxPasswordField implements Omit<MxField, 'type'> {
-  placeholder?: string;
-  visible: boolean;
-  required: boolean;
-  info?: string;
-  additionalValidations?: MxField.validation[];
+  /**
+   * Password type only
+   *
+   * @type {MxField.type.PASSWORD}
+   */
   type: MxField.type.PASSWORD = MxField.type.PASSWORD;
-  validations?: PasswordValidations;
+  /**
+   * Whether the initial state of the hide toggle button
+   *
+   * @type {boolean}
+   */
   readonly hideToggle?: boolean;
+  /**
+   * Creates an instance of MxPasswordField.
+   * @param {string} id The unique identifier for the field.
+   * @param {string} label The label text for the field.
+   * @param {string} [placeholder] The placeholder text to display in the textarea.
+   * @param {string} [info] Additional information about the field.
+   * @param {boolean} [hideToggle=true] Whether the initial state of the hide toggle button
+   * @param {PasswordValidations} [validations=new PasswordValidationsModel()] Custom configurations for password validators
+   * @param {boolean} [required=false] Whether the field is required or optional.
+   * @param {boolean} [visible=true] Whether the field is visible or hidden.
+   * @param {MxField.validation[]} [additionalValidations] An array of additional validation rules for the field.
+   */
   constructor(
     public id: string,
     public label: string,
-    required: boolean = false,
-    placeholder: string = '',
-    info: string = '',
-    visible: boolean = true,
+    public placeholder: string = '',
+    public info: string = '',
     hideToggle: boolean = true,
-    validations = new PasswordValidationsModel(),
-    additionalValidations: MxField.validation[] = []
+    public validations: PasswordValidations = new PasswordValidationsModel(),
+    public required: boolean = false,
+    public visible: boolean = true,
+    public additionalValidations: MxField.validation[] = []
   ) {
     this.placeholder = placeholder;
     this.visible = visible;
