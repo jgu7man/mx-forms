@@ -1,5 +1,5 @@
 <ng-container *ngIf="field">
-  <mat-form-field appearance="outline" [matTooltip]="field.info || ''">
+  <mat-form-field appearance="outline" [matTooltip]="field.info || ''" [floatLabel]="field.placeholder ? 'always' : 'auto'">
     <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
     <textarea matInput
       [id]="field.id"
@@ -7,7 +7,7 @@
       [formControl]="control"
       [required]="field.required"
       [placeholder]="field.placeholder || ''"
-      [mat-autosize]="field.size.autosize ?? false"
+      [mat-autosize]="field.size.autosize ? true : false"
       [rows]="field.size.rows"
       [cols]="field.size.cols"
     ></textarea>
