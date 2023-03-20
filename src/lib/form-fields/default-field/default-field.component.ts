@@ -9,6 +9,7 @@ import {
 import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { skipWhile, takeUntil } from 'rxjs/operators';
+import { ValidationMessages } from '../../messages/validators.messages';
 import { setValue } from '../../shared/helpers';
 import { MxField } from '../field.model';
 
@@ -104,6 +105,10 @@ export class MxDefaultFieldComponent implements OnInit {
    */
   get value(): any {
     return this._value.getValue();
+  }
+
+  get requiredMessage() {
+    return ValidationMessages.REQUIRED;
   }
 
   /** @internal */

@@ -15,7 +15,7 @@
       <mat-hint align="end">{{control.value.length}} / {{field.maxCharLimit.limit}}</mat-hint>
     </ng-container>
     <mat-error *ngIf="control.hasError('required')">
-      Este campo es requerido
+      {{requiredMessage}}
     </mat-error>
     <ng-container *ngFor="let validation of field.additionalValidations">
       <mat-error *ngIf="control.hasError(validation.token)">{{ validation.message}}</mat-error>
