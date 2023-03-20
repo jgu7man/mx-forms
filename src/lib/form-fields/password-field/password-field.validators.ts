@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { MxPasswordField } from './password-validation.model';
 
 export module PasswordValidators {
   /**
@@ -11,7 +10,7 @@ export module PasswordValidators {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
       const hasLessThanMin = minLength && value.length < minLength;
-      return { [MxPasswordField.TOKEN.MIN_LENGTH]: hasLessThanMin };
+      return { [PasswordValidators.TOKEN.MIN_LENGTH]: hasLessThanMin };
     };
   }
   /**
@@ -23,7 +22,7 @@ export module PasswordValidators {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
       const hasMoreThanMax = maxLength && value.length > maxLength;
-      return { [MxPasswordField.TOKEN.MIN_LENGTH]: hasMoreThanMax };
+      return { [PasswordValidators.TOKEN.MIN_LENGTH]: hasMoreThanMax };
     };
   }
 
@@ -39,7 +38,7 @@ export module PasswordValidators {
     const hasLowerCase = /[a-z]/.test(value);
     const hasUpperCase = /[A-Z]/.test(value);
     if (!hasLowerCase || !hasUpperCase) {
-      return { [MxPasswordField.TOKEN.CHARACTER_CASE]: true };
+      return { [PasswordValidators.TOKEN.CHARACTER_CASE]: true };
     }
     return null;
   };
@@ -54,7 +53,7 @@ export module PasswordValidators {
   ): ValidationErrors | null => {
     const value = control.value;
     const hasNumber = /[0-9]/.test(value);
-    return { [MxPasswordField.TOKEN.NUMBER_REQUIRED]: !hasNumber };
+    return { [PasswordValidators.TOKEN.NUMBER_REQUIRED]: !hasNumber };
   };
 
   /**
@@ -67,6 +66,37 @@ export module PasswordValidators {
   ): ValidationErrors | null => {
     const value = control.value;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-    return { [MxPasswordField.TOKEN.NUMBER_REQUIRED]: !hasSpecialChar };
+    return { [PasswordValidators.TOKEN.NUMBER_REQUIRED]: !hasSpecialChar };
   };
+}
+
+export namespace PasswordValidators {
+  /**
+   * An enum representing different types of password validation rules.
+   *
+   * @export
+   * @enum {number}
+   */
+  export enum TOKEN {
+    /**
+     * The minimum length of the password.
+     */
+    MIN_LENGTH = 'minimumLength',
+    /**
+     * The maximum length of the password.
+     */
+    MAX_LENGTH = 'maximumLength',
+    /**
+     * The character case requirement of the password.
+     */
+    CHARACTER_CASE = 'characterCase',
+    /**
+     * Whether the password requires at least one number.
+     */
+    NUMBER_REQUIRED = 'requiresNumber',
+    /**
+     * Whether the password requires at least one special character.
+     */
+    SPECIAL_CHARACTERS_REQUIRED = 'requiresSpecialChar'
+  }
 }

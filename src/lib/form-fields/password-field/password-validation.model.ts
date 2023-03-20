@@ -3,34 +3,6 @@ import { PasswordValidators } from './password-field.validators';
 
 export namespace PasswordValidations {
   /**
-   * An enum representing different types of password validation rules.
-   *
-   * @export
-   * @enum {number}
-   */
-  export enum TOKEN {
-    /**
-     * The minimum length of the password.
-     */
-    MIN_LENGTH = 'minimumLength',
-    /**
-     * The maximum length of the password.
-     */
-    MAX_LENGTH = 'maximumLength',
-    /**
-     * The character case requirement of the password.
-     */
-    CHARACTER_CASE = 'characterCase',
-    /**
-     * Whether the password requires at least one number.
-     */
-    NUMBER_REQUIRED = 'requiresNumber',
-    /**
-     * Whether the password requires at least one special character.
-     */
-    SPECIAL_CHARACTERS_REQUIRED = 'requiresSpecialChar'
-  }
-  /**
    * Configuration object for password validations.
    * @property {number} minimumLength - The minimum length required for a valid password.
    * @property {number} maximumLength - The maximum length allowed for a valid password.
@@ -134,31 +106,31 @@ export class PasswordValidationsModel implements PasswordValidations {
     }
   ) {
     this.minimumLength = {
-      token: PasswordValidations.TOKEN.MAX_LENGTH,
+      token: PasswordValidators.TOKEN.MAX_LENGTH,
       message: PasswordValidations.MESSAGES.MAX_LENGTH,
       validator: PasswordValidations.VALIDATORS.minimumLength(
         config.minimumLength
       )
     };
     this.maximumLength = {
-      token: PasswordValidations.TOKEN.MAX_LENGTH,
+      token: PasswordValidators.TOKEN.MAX_LENGTH,
       message: PasswordValidations.MESSAGES.MAX_LENGTH,
       validator: PasswordValidations.VALIDATORS.maximumLength(
         config.maximumLength
       )
     };
     this.characterCase = {
-      token: PasswordValidations.TOKEN.CHARACTER_CASE,
+      token: PasswordValidators.TOKEN.CHARACTER_CASE,
       message: PasswordValidations.MESSAGES.CHARACTER_CASE,
       validator: PasswordValidations.VALIDATORS.characterCase
     };
     (this.requiresNumber = {
-      token: PasswordValidations.TOKEN.NUMBER_REQUIRED,
+      token: PasswordValidators.TOKEN.NUMBER_REQUIRED,
       message: PasswordValidations.MESSAGES.NUMBER_REQUIRED,
       validator: PasswordValidations.VALIDATORS.requiresNumber
     }),
       (this.requiresSpecialChar = {
-        token: PasswordValidations.TOKEN.SPECIAL_CHARACTERS_REQUIRED,
+        token: PasswordValidators.TOKEN.SPECIAL_CHARACTERS_REQUIRED,
         message: PasswordValidations.MESSAGES.SPECIAL_CHARACTERS_REQUIRED,
         validator: PasswordValidations.VALIDATORS.requiresSpecialChar
       });
