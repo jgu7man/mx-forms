@@ -4,6 +4,7 @@ import { MxNumberField } from './number-field/number-field.model';
 import { MxPasswordField } from './password-field/password-field.model';
 import { PasswordValidations } from './password-field/password-validation.model';
 import { MxPhoneField } from './phone-field/phone-field.model';
+import { MxSelectField } from './select-field/select-field.model';
 import { MxTextField } from './text-field/text-field.model';
 import { MxTextareaField } from './textarea-field/textarea-field.model';
 
@@ -58,6 +59,7 @@ export namespace MxField {
   export type PASSWORD = MxPasswordField;
   export type PHONE = MxPhoneField;
   export type TEXTAREA = MxTextareaField;
+  export type SELECT = MxSelectField;
 
   export interface option {
     value: any;
@@ -77,4 +79,30 @@ export namespace MxField {
   export namespace validationTypes {
     export type PASSWORD = PasswordValidations;
   }
+
+  /**
+   * Defines an option item for the field
+   *
+   * @property {string} value The value of the option. Recommended use as simple value as can
+   * @property {string} label The label to display the value of the option. Recommended use as explicit as can
+   * @export
+   * @interface option
+   */
+  export interface option {
+    value: any;
+    label: string;
+  }
+  /**
+   * Group of options for the field
+   * @property {string} name Name of the group
+   * @property {MxSelectField.option[]} options List of options of the group
+   *
+   * @export
+   * @interface group
+   */
+  export interface optionGroup {
+    name: string;
+    options: option[];
+  }
+  export type options = option[] | optionGroup[];
 }

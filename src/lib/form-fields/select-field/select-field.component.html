@@ -1,0 +1,33 @@
+<ng-container *ngIf="field">
+  <mat-form-field appearance="outline" [matTooltip]="field.info || ''" [floatLabel]="field.placeholder ? 'always' : 'auto'">
+    <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
+    <mat-select
+    [formControl]="control"
+    [required]="field.required"
+    [id]="field.id"
+    [placeholder]="field.placeholder || ''"
+    [multiple]="field.multiple"
+    >
+      <mat-option *ngIf="field.resetLabel">{{field.resetLabel}}</mat-option>
+      <ng-container *ngIf="groups.length; else noGroups">
+        <mat-optgroup *ngFor="let group of groups" [label]="group.name">
+          <mat-option *ngFor="let option of group.options"
+          [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-optgroup>
+      </ng-container>
+      <ng-template #noGroups >
+        <mat-option *ngFor="let option of options" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </ng-template>
+    </mat-select>
+    <mat-error *ngIf="control.hasError('required')">
+      {{requiredMessage}}
+    </mat-error>
+    <ng-container *ngFor="let validation of field.additionalValidations">
+      <mat-error *ngIf="control.hasError(validation.token)">{{ validation.message}}</mat-error>
+    </ng-container>
+  </mat-form-field>
+</ng-container>
