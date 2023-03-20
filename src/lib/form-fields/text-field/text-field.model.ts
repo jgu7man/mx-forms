@@ -17,6 +17,7 @@ export class MxTextField implements Omit<MxField, 'type'> {
    * @param {string} [info] - Additional information about the field.
    * @param {boolean} [required=false] Whether the field is required or optional.
    * @param {boolean} [visible=true] Whether the field is visible or hidden.
+   * @param {boolean} [disable=false] Whether the field is disable or enable
    * @param {MxField.validation[]} [additionalValidations] - An array of additional validation rules for the field.
    */
   constructor(
@@ -26,6 +27,7 @@ export class MxTextField implements Omit<MxField, 'type'> {
     public info: string = '',
     public visible: boolean = true,
     public required: boolean = false,
+    public disable: boolean = false,
     public additionalValidations: MxField.validation[] = []
   ) {}
 }

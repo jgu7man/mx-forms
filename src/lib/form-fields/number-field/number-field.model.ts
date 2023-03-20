@@ -26,6 +26,7 @@ export class MxNumberField implements Omit<MxField, 'type'> {
     public placeholder?: string,
     public info?: string,
     public required: boolean = false,
+    public disable: boolean = false,
     public visible: boolean = true,
     public additionalValidations?: MxField.validation[]
   ) {}

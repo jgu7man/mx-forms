@@ -16,6 +16,7 @@ import { MxTextareaField } from './textarea-field/textarea-field.model';
  * @property {string} placeholder - Defines the placeholder
  * @property {string} info -  Explains the information about the field
  * @property {boolean} required - A flag indicating whether the field is required or not.
+ * @property {boolean} [disable=false] Whether the field is disable or enable
  * @property {boolean} visible - A flag indicating whether the field is visible or not.
  * @property {any[]} additionalValidations - An array of additional validations for the field.
  */
@@ -26,7 +27,7 @@ export interface MxField {
   placeholder?: string;
   info?: string;
   required: boolean;
-  type: MxField.type;
+  disable: boolean;
   visible: boolean;
   additionalValidations?: MxField.validation[];
 }

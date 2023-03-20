@@ -33,6 +33,7 @@ export class MxPasswordField implements Omit<MxField, 'type'> {
    * @param {boolean} [hideToggle=true] Whether the initial state of the hide toggle button
    * @param {PasswordValidations} [validations=new PasswordValidationsModel()] Custom configurations for password validators
    * @param {boolean} [required=false] Whether the field is required or optional.
+   * @param {boolean} [disable=false] Whether the field is disable or enable
    * @param {boolean} [visible=true] Whether the field is visible or hidden.
    * @param {MxField.validation[]} [additionalValidations] An array of additional validation rules for the field.
    */
@@ -44,14 +45,10 @@ export class MxPasswordField implements Omit<MxField, 'type'> {
     hideToggle: boolean = true,
     public validations: PasswordValidations = new PasswordValidationsModel(),
     public required: boolean = false,
+    public disable: boolean = false,
     public visible: boolean = true,
     public additionalValidations: MxField.validation[] = []
   ) {
-    this.placeholder = placeholder;
-    this.visible = visible;
-    this.required = required;
-    this.info = info;
-    this.additionalValidations = additionalValidations;
     this.validations = validations;
     this.hideToggle = hideToggle;
   }

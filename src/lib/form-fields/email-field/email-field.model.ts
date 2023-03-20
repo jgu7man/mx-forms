@@ -19,6 +19,7 @@ export class MxEmailField implements Omit<MxField, 'type'> {
    * @param {string} [info] Additional information about the field.
    * @param {string} [emailValidationMsg] A custom message for email format validation.
    * @param {boolean} [required=false] Whether the field is required or optional.
+   * @param {boolean} [disable=false] Whether the field is disable or enable
    * @param {boolean} [visible=true] Whether the field is visible or hidden.
    * @param {MxField.validation[]} [additionalValidations] An array of additional validation rules for the field.
    */
@@ -29,6 +30,7 @@ export class MxEmailField implements Omit<MxField, 'type'> {
     public info?: string,
     emailValidationMsg?: string,
     public required: boolean = false,
+    public disable: boolean = false,
     public visible: boolean = true,
     public additionalValidations?: MxField.validation[]
   ) {

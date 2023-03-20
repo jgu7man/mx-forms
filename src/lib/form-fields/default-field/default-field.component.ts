@@ -35,7 +35,8 @@ export class MxDefaultFieldComponent implements OnInit {
       id: 'undefined-field',
       label: 'Label',
       required: false,
-      visible: true
+      visible: true,
+      disable: false
     });
   private _value: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 

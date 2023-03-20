@@ -25,6 +25,7 @@ export class MxTextareaField implements Omit<MxField, 'type'> {
    * @param {MxTextareaField.LimitValidation} [maxCharLimit={ limit: 0, message: ValidationMessages.CHAR_LIMIT }] - The maximum character limit for the field.
    * @param {boolean} [required=false] Whether the field is required or optional.
    * @param {boolean} [visible=true] Whether the field is visible or hidden.
+   * @param {boolean} [disable=false] Whether the field is disable or enable
    * @param {MxField.validation[]} [additionalValidations] - An array of additional validation rules for the field.
    */
   constructor(
@@ -42,6 +43,7 @@ export class MxTextareaField implements Omit<MxField, 'type'> {
     },
     public required: boolean = false,
     public visible: boolean = true,
+    public disable: boolean = false,
     public additionalValidations?: MxField.validation[]
   ) {}
 }
