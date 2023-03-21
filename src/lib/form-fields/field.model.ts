@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { MxCheckboxField } from './checkbox-field/checkbox-field.model';
 import { MxEmailField } from './email-field/email-field.model';
 import { MxNumberField } from './number-field/number-field.model';
 import { MxPasswordField } from './password-field/password-field.model';
@@ -62,6 +63,7 @@ export namespace MxField {
   export type TEXTAREA = MxTextareaField;
   export type SELECT = MxSelectField;
   export type RADIO = MxRadioField;
+  export type CHECKBOX = MxCheckboxField;
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
@@ -73,7 +75,8 @@ export namespace MxField {
     | PASSWORD
     | TEXTAREA
     | SELECT
-    | RADIO;
+    | RADIO
+    | CHECKBOX;
 
   export interface validation {
     validator: ValidatorFn;

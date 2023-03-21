@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { MxCheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { MxDefaultFieldComponent } from './default-field/default-field.component';
 import { MxEmailFieldComponent } from './email-field/email-field.component';
 import { MxNumberFieldComponent } from './number-field/number-field.component';
@@ -20,7 +21,8 @@ const components = [
   MxPasswordFieldComponent,
   MxTextareaFieldComponent,
   MxSelectFieldComponent,
-  MxRadioFieldComponent
+  MxRadioFieldComponent,
+  MxCheckboxFieldComponent
 ];
 
 @NgModule({

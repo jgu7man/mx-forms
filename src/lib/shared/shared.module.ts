@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
 const materialModules = [
@@ -27,7 +28,8 @@ const materialModules = [
   MatSelectModule,
   MatSnackBarModule,
   MatTooltipModule,
-  MatRadioModule
+  MatRadioModule,
+  MatCheckboxModule
 ];
 
 const cdkModules = [DragDropModule];
