@@ -4,6 +4,7 @@ import { MxNumberField } from './number-field/number-field.model';
 import { MxPasswordField } from './password-field/password-field.model';
 import { PasswordValidations } from './password-field/password-validation.model';
 import { MxPhoneField } from './phone-field/phone-field.model';
+import { MxRadioField } from './radio-field/radio-field.model';
 import { MxSelectField } from './select-field/select-field.model';
 import { MxTextField } from './text-field/text-field.model';
 import { MxTextareaField } from './textarea-field/textarea-field.model';
@@ -42,7 +43,7 @@ export namespace MxField {
     NUMBER = 'number',
     TEXTAREA = 'textarea',
     SELECT = 'select',
-    RADIUS = 'radius',
+    RADIO = 'radio',
     MULTIPLE = 'multiple',
     CHECKBOX = 'checkbox',
     SWITCH = 'switch',
@@ -60,15 +61,19 @@ export namespace MxField {
   export type PHONE = MxPhoneField;
   export type TEXTAREA = MxTextareaField;
   export type SELECT = MxSelectField;
-
-  export interface option {
-    value: any;
-    index: number;
-  }
+  export type RADIO = MxRadioField;
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
-  export type forAll = MxField | TEXT | NUMBER | EMAIL | PASSWORD | TEXTAREA;
+  export type forAll =
+    | MxField
+    | TEXT
+    | NUMBER
+    | EMAIL
+    | PASSWORD
+    | TEXTAREA
+    | SELECT
+    | RADIO;
 
   export interface validation {
     validator: ValidatorFn;

@@ -1,0 +1,18 @@
+<div class="row" *ngIf="field">
+	<div class="col s12">
+		<div class="label-cont" [matTooltip]="field.info || ''">
+			<p>
+				{{ field.label }}
+				<span class="red-text" *ngIf="field.required">*</span>
+			</p>
+		</div>
+		<mat-radio-group [value]="field.defaultSelected">
+			<mat-radio-button
+				*ngFor="let option of field.options"
+				[value]="option.value"
+			>
+				{{ option.value }}
+			</mat-radio-button>
+		</mat-radio-group>
+	</div>
+</div>

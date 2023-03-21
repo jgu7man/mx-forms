@@ -16,7 +16,7 @@ export const DefaultValueByType: DefaultValue = {
   [MxField.type.NUMBER]: 0,
   [MxField.type.TEXTAREA]: '',
   [MxField.type.SELECT]: [],
-  [MxField.type.RADIUS]: [],
+  [MxField.type.RADIO]: [],
   [MxField.type.MULTIPLE]: [],
   [MxField.type.CHECKBOX]: false,
   [MxField.type.SWITCH]: false,

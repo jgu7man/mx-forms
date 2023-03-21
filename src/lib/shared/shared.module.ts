@@ -13,7 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { DragDropModule } from "@angular/cdk/drag-drop";
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatRadioModule } from '@angular/material/radio';
 
 const materialModules = [
   MatButtonModule,
@@ -25,29 +26,17 @@ const materialModules = [
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTooltipModule
-]
+  MatTooltipModule,
+  MatRadioModule
+];
 
-const cdkModules = [
-  DragDropModule
-]
+const cdkModules = [DragDropModule];
 
-const commonModules = [
-  ReactiveFormsModule
-]
+const commonModules = [ReactiveFormsModule];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ...cdkModules,
-    ...commonModules,
-    ...materialModules
-  ],
-  exports: [
-    ...cdkModules,
-    ...commonModules,
-    ...materialModules,
-  ]
+  imports: [CommonModule, ...cdkModules, ...commonModules, ...materialModules],
+  exports: [...cdkModules, ...commonModules, ...materialModules]
 })
-export class SharedModule { }
+export class SharedModule {}
