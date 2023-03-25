@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MxCheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { MxDefaultFieldComponent } from './default-field/default-field.component';
 import { MxEmailFieldComponent } from './email-field/email-field.component';
+import { MxLevelFieldComponent } from './level-field/level-field.component';
 import { MxNumberFieldComponent } from './number-field/number-field.component';
 import { MxPasswordFieldComponent } from './password-field/password-field.component';
 import { MxPhoneFieldComponent } from './phone-field/phone-field.component';
@@ -22,7 +23,8 @@ const components = [
   MxTextareaFieldComponent,
   MxSelectFieldComponent,
   MxRadioFieldComponent,
-  MxCheckboxFieldComponent
+  MxCheckboxFieldComponent,
+  MxLevelFieldComponent
 ];
 
 @NgModule({
