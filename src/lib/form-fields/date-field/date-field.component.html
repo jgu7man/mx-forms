@@ -1,0 +1,41 @@
+<ng-container *ngIf="field">
+  <mat-form-field
+    appearance="outline"
+    [matTooltip]="field.info || ''"
+    [floatLabel]="field.placeholder ? 'always' : 'auto'">
+
+    <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [name]="field.id"
+      [formControl]="control"
+      [id]="field.id"
+      [placeholder]="field.placeholder || ''"
+      [min]="field.limits ? field.limits.min : null"
+      [max]="field.limits ? field.limits.max : null"
+      [matDatepickerFilter]="enableWorkWeek">
+    <mat-datepicker-toggle matSuffix [for]="picker!">
+      <mat-icon matDatepickerToggleIcon>{{field.toggleIcon}}</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker>
+      <mat-datepicker-actions *ngIf="field.actionButtons">
+        <button *ngIf="field.actionButtons.cancel as cancel" mat-button matDatepickerCancel
+                [color]="cancel.color">
+          {{cancel.label}}
+        </button>
+        <button *ngIf="field.actionButtons.accept as accept" mat-raised-button
+                [color]="accept.color" matDatepickerApply>
+          {{accept.label}}
+        </button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+    <mat-error *ngIf="control.hasError('required')">
+      {{requiredMessage}}
+    </mat-error>
+    <ng-container *ngFor="let validation of field.additionalValidations">
+      <mat-error *ngIf="control.hasError(validation.token)">{{ validation.message}}</mat-error>
+    </ng-container>
+
+  </mat-form-field>
+</ng-container>

@@ -1,5 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { MxCheckboxField } from './checkbox-field/checkbox-field.model';
+import { MxDateField } from './date-field/date-field.model';
 import { MxEmailField } from './email-field/email-field.model';
 import { MxLevelField } from './level-field/level-field.model';
 import { MxNumberField } from './number-field/number-field.model';
@@ -66,6 +67,7 @@ export namespace MxField {
   export type RADIO = MxRadioField;
   export type CHECKBOX = MxCheckboxField;
   export type LEVEL = MxLevelField;
+  export type DATE = MxDateField;
 
   export type reference = Pick<MxField, 'id' | 'label' | 'visible'>;
 
@@ -79,7 +81,8 @@ export namespace MxField {
     | SELECT
     | RADIO
     | CHECKBOX
-    | LEVEL;
+    | LEVEL
+    | DATE;
 
   export interface validation {
     validator: ValidatorFn;
