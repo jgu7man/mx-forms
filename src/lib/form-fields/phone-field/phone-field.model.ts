@@ -28,8 +28,8 @@ export class MxPhoneField implements Omit<MxField, 'type'> {
   constructor(
     public id: string,
     public label: string,
-    public placeholder: string,
-    public info: string,
+    public placeholder?: string,
+    public info?: string,
     public patternValidation: MxPhoneField.PatternValidation = {
       pattern: MxPhoneField.PATTERN,
       message: ValidationMessages.PHONE
@@ -37,7 +37,7 @@ export class MxPhoneField implements Omit<MxField, 'type'> {
     public visible: boolean = true,
     public required: boolean = false,
     public disable: boolean = false,
-    public additionalValidations: MxField.validation[]
+    public additionalValidations: MxField.validation[] = []
   ) {}
 }
 

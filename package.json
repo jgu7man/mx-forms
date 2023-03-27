@@ -4,7 +4,7 @@
   "scripts": {
     "build:local": "ng build @marxa/forms --prod --watch",
     "compodoc": "npx compodoc -p tsconfig.doc.json --disableSourceCode --disableStyleTab --disablePrivate --disableProtected --disableLifeCycleHooks -t -s -o",
-    "copy:styles": "cpx \"./src/lib/styles/**/*\" \"dist/marxa/devkit/styles\""
+    "copy:styles": "cpx \"./src/lib/styles/**/*\" \"dist/marxa/forms/styles\""
   },
   "peerDependencies": {
     "@angular/common": "^11.0.9",

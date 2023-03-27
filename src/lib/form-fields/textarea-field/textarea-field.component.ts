@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
+import { MxTextareaField } from './textarea-field.model';
 
 /**
  * Component for displaying a textarea input field with additional validations.
@@ -52,6 +53,7 @@ export class MxTextareaFieldComponent extends MxDefaultFieldComponent {
         message: limitValidation.message
       }
     ];
-    this._field.next({ ...field, additionalValidations });
+    const defaultProperties = new MxTextareaField('', '');
+    this._field.next({ ...defaultProperties, ...field, additionalValidations });
   }
 }

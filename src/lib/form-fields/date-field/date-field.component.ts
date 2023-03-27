@@ -103,7 +103,7 @@ export class MxDateFieldComponent extends MxDefaultFieldComponent {
     const defaultProperties = new MxDateField('', '');
     this.control.setValue(moment());
     this.workWeek = workWeek;
-    this._field.next({ ...field, ...defaultProperties });
+    this._field.next({ ...defaultProperties, ...field });
   }
   /**
    * Sets the value of the work week option.

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MxDefaultFieldComponent } from '@marxa/forms';
+import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
 import { MxSelectField } from './select-field.model';
 

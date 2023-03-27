@@ -2,7 +2,7 @@
   <mat-form-field appearance="outline" [matTooltip]="field.info || ''" [floatLabel]="field.placeholder ? 'always' : 'auto'">
     <mat-label *ngIf="field.label">{{ field.label }}</mat-label>
     <input matInput
-      [type]="'text'"
+      [type]="field.type"
       [id]="field.id"
       [name]="field.id"
       [formControl]="control"

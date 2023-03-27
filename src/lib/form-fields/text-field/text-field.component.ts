@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
+import { MxField } from '../field.model';
+import { MxTextField } from './text-field.model';
 
 /**
  * Component for displaying and editing numeric fields.
@@ -24,6 +26,11 @@ import { MxDefaultFieldComponent } from '../default-field/default-field.componen
 @Component({
   selector: 'mx-text-field',
   exportAs: 'mxTextField',
-  templateUrl: '../default-field/default-field.component.html'
+  templateUrl: 'text-field.component.html'
 })
-export class MxTextFieldComponent extends MxDefaultFieldComponent {}
+export class MxTextFieldComponent extends MxDefaultFieldComponent {
+  @Input() set field(field: MxField.TEXT) {
+    const defaultProperties = new MxTextField('', '');
+    this._field.next({ ...defaultProperties, ...field });
+  }
+}

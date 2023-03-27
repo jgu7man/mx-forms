@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { ValidationMessages } from '../../messages/validators.messages';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
+import { MxEmailField } from './email-field.model';
 
 /**
  * Component for displaying and editing numeric fields.
@@ -23,7 +24,7 @@ import { MxField } from '../field.model';
 @Component({
   selector: 'mx-email-field',
   exportAs: 'mxEmailField',
-  templateUrl: '../default-field/default-field.component.html'
+  templateUrl: 'email-field.component.html'
 })
 export class MxEmailFieldComponent extends MxDefaultFieldComponent {
   /**
@@ -49,6 +50,7 @@ export class MxEmailFieldComponent extends MxDefaultFieldComponent {
         message: emailValidationMsg
       }
     ];
-    this._field.next({ ...field, additionalValidations });
+    const defaultProperties = new MxEmailField('', '');
+    this._field.next({ ...defaultProperties, ...field, additionalValidations });
   }
 }

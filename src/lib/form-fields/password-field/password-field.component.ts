@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
+import { MxPasswordField } from './password-field.model';
 import { PasswordValidationsModel } from './password-validation.model';
 
 /**
@@ -60,6 +61,7 @@ export class MxPasswordFieldComponent extends MxDefaultFieldComponent {
       validations.requiresSpecialChar
     ];
     this.hide = hideToggle;
-    this._field.next({ ...field, additionalValidations });
+    const defaultProperties = new MxPasswordField('', '');
+    this._field.next({ ...defaultProperties, ...field, additionalValidations });
   }
 }

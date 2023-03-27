@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
+import { MxPhoneField } from './phone-field.model';
 
 /**
  * Component for displaying and editing numeric fields.
@@ -48,6 +49,7 @@ export class MxPhoneFieldComponent extends MxDefaultFieldComponent {
         message: patternValidation.message
       }
     ];
-    this._field.next({ ...field, additionalValidations });
+    const defaultProperties = new MxPhoneField('', '');
+    this._field.next({ ...defaultProperties, ...field, additionalValidations });
   }
 }

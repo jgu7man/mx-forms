@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MxDefaultFieldComponent } from '../default-field/default-field.component';
 import { MxField } from '../field.model';
+import { MxNumberField } from './number-field.model';
 
 /**
  * Component for displaying and editing numeric fields.
@@ -25,7 +26,7 @@ import { MxField } from '../field.model';
 @Component({
   selector: 'mx-number-field',
   exportAs: 'mxNumberField',
-  templateUrl: '../default-field/default-field.component.html'
+  templateUrl: 'number-field.component.html'
 })
 export class MxNumberFieldComponent extends MxDefaultFieldComponent {
   /**
@@ -39,6 +40,7 @@ export class MxNumberFieldComponent extends MxDefaultFieldComponent {
    * @param {MxField.Validation[]} [field.additionalValidations] - An array of additional validations for the field.
    */
   @Input() set field(config: MxField.NUMBER) {
-    this._field.next(config);
+    const defaultProperties = new MxNumberField('', '');
+    this._field.next({ ...defaultProperties, ...config });
   }
 }

@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {
+  PASSWORD_VALIDATION_MESSAGES_CONFIG,
+  PasswordValidationsMessages
+} from '../messages/password-validation.messages';
+import {
+  VALIDATION_MESSAGES_CONFIG_TOKEN,
+  ValidationMessages
+} from '../messages/validators.messages';
 import { SharedModule } from '../shared/shared.module';
 import { MxCheckboxFieldComponent } from './checkbox-field/checkbox-field.component';
 import { MxDateFieldComponent } from './date-field/date-field.component';
@@ -32,6 +40,16 @@ const components = [
 @NgModule({
   declarations: [...components],
   imports: [CommonModule, SharedModule],
-  exports: [...components]
+  exports: [...components],
+  providers: [
+    {
+      provide: VALIDATION_MESSAGES_CONFIG_TOKEN,
+      useExisting: ValidationMessages
+    },
+    {
+      provide: PASSWORD_VALIDATION_MESSAGES_CONFIG,
+      useExisting: PasswordValidationsMessages
+    }
+  ]
 })
 export class MxFieldsModule {}

@@ -2,14 +2,18 @@ import {
   Component,
   EventEmitter,
   HostListener,
+  Inject,
   Input,
   OnInit,
   Output
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, combineLatest } from 'rxjs';
 import { skipWhile, takeUntil } from 'rxjs/operators';
-import { ValidationMessages } from '../../messages/validators.messages';
+import {
+  VALIDATION_MESSAGES_CONFIG_TOKEN,
+  ValidationMessagesSlots
+} from '../../messages/validators.messages';
 import { setValue } from '../../shared/helpers';
 import { MxField } from '../field.model';
 
@@ -76,6 +80,11 @@ export class MxDefaultFieldComponent implements OnInit {
    */
   @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+  constructor(
+    @Inject(VALIDATION_MESSAGES_CONFIG_TOKEN)
+    private readonly _fieldMessages: ValidationMessagesSlots
+  ) {}
+
   /**
    * Emits changes in the FormControl and value properties to parent components.
    * @returns {void}
@@ -108,7 +117,7 @@ export class MxDefaultFieldComponent implements OnInit {
   }
 
   get requiredMessage() {
-    return ValidationMessages.REQUIRED;
+    return this._fieldMessages.REQUIRED;
   }
 
   /** @internal */
