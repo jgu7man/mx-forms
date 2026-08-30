@@ -1,201 +1,193 @@
-# @marxa/mx-forms
+# @marxa/mx-forms (Dynamic Reactive Form Engine for Angular)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.9.
+[![Angular](https://img.shields.io/badge/Angular-v11%2B%20%7C%20Reactive%20Forms-DD0031?style=flat-square&logo=angular&logoColor=white)](https://angular.io)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-The **@marxa/mx-forms** library provides a set of customizable form fields that can be used as Angular child components within a form. The available fields are `text`, `number`, `phone`, `password`, `textarea`, `checkbox`, `switch`, `select`, `date`, `level`, and `radio`. Each field has its own set of configurable properties, which can be used to customize its behavior and appearance.
+The **`@marxa/mx-forms`** library provides a comprehensive set of customizable, schema-driven form field components designed to integrate natively with Angular Reactive Forms (`FormGroup` / `FormControl`).
 
-## Installation
-Run `npm install -s @marxa/forms` to install the package in your project.
-To use the Forms, you'll first need to import it into your module:
-```ts
-import { MxEmailFieldComponent } from '@my-company/my-ui-library';
+---
 
-@NgModule({
-  imports: [
-    MxFormsModule,
-    // other components...
-  ],
-  // other module properties...
-})
-export class MyModule {}
-```
+## 📦 Available Fields
 
-## Usage
-Once you've imported the `MxFormsModule`, you can use it in your templates. Example:
+The library provides the following field components:
+
+- `mx-text-field` — Text input with validation
+- `mx-number-field` — Formatted numeric input
+- `mx-phone-field` — Phone number formatting
+- `mx-password-field` — Password field with policy enforcement
+- `mx-textarea-field` — Multi-line text area
+- `mx-checkbox-field` — Boolean checkbox
+- `mx-switch-field` — Toggle switch
+- `mx-select-field` — Dropdown select
+- `mx-date-field` — Date picker
+- `mx-level-field` — Stepper / level selector
+- `mx-radio-field` — Radio button group
+
+---
+
+## 🚀 Installation & Setup
+
+1. Install the package:
+   ```bash
+   npm install @marxa/forms
+   ```
+
+2. Import `MxFormsModule` into your Angular module or component imports:
+   ```typescript
+   import { NgModule } from '@angular/core';
+   import { MxFormsModule } from '@marxa/forms';
+
+   @NgModule({
+     imports: [
+       MxFormsModule
+     ]
+   })
+   export class AppModule {}
+   ```
+
+---
+
+## 💻 Usage Example
+
+### 1. Template Binding
 ```html
-<mx-email-field [field]="emailField"></mx-email-field>
+<form [formGroup]="myForm">
+  <mx-text-field
+    [field]="usernameField"
+    [control]="myForm.get('username')"
+    (controlChange)="onControlChange($event)"
+  ></mx-text-field>
+
+  <mx-email-field
+    [field]="emailField"
+    [control]="myForm.get('email')"
+  ></mx-email-field>
+</form>
 ```
 
-In this example, the `EmailField` variable is an object that contains the configuration for the email field:
-```ts
-const emailField: MxField.EMAIL = {
-  id: 'email',
-  label: 'Email',
-  required: true,
-  visible: true,
-};
-```
-
-You can then use the available fields in your templates:
-```html
-<mx-text-field
-  [(control)]="myForm.get('username')"
-></mx-text-field>
-```
-
-The `control` input is a control of a `FormGroup` instance in your reactive forms, and the `controlChange` output works as a two-way binding.
-
-## Available fields
-The library provides the following fields:
-
-`mx-text-field`
-`mx-number-field`
-`mx-phone-field`
-`mx-password-field`
-`mx-textarea-field`
-`mx-checkbox-field`
-`mx-switch-field`
-`mx-select-field`
-`mx-date-field`
-`mx-level-field`
-`mx-radio-field`
-
-Each field has its own properties, please refer to the API documentation for details.
-
-## MxDefaultFieldComponent
-The `MxDefaultFieldComponent` is a base component for creating fields as HTML input elements. It receives a configuration object of type `MxField` which contains properties like the `id`, `label`, `required`, `visible`, `disable`, and `additionalValidations`. 
-Additionally, it receives a `control` input of type `FormControl` which allows the component to be used in reactive forms of Angular. The `MxDefaultFieldComponent` emits two-way bindings for changes in the form control and the value of the field.
-
-### Properties
-- `field: MxField.forAll` (input) - Receives the field configuration object.
-- `value: any` (input) - Receives the value of the field.
-- `control: FormControl` (input) - Inherits a control form parent form component.
-- `controlChange: EventEmitter<FormControl>` (output) - Emits changes in the FormControl to parent components.
-- `valueChange: EventEmitter<any>` (output) - Emits changes in the value of the field to parent components.
-
-### Methods
-`emitResults(): void` - Emits changes in the FormControl and value properties to parent components.
-
-### Usage example
-```ts
+### 2. Component Configuration
+```typescript
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MxField } from './field.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MxField } from '@marxa/forms';
 
 @Component({
-  selector: 'my-component',
-  template: `
-    <form [formGroup]="myForm">
-      <mx-default-field
-        [field]="myFieldConfig"
-        [value]="myFieldValue"
-        [control]="myFormControl"
-        (controlChange)="onControlChange($event)"
-        (valueChange)="onValueChange($event)"
-      ></mx-default-field>
-    </form>
-  `
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html'
 })
-export class MyComponent {
+export class UserFormComponent {
   myForm = new FormGroup({
-    myFormControl: new FormControl('')
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  myFieldConfig: MxField = {
+  usernameField: MxField = {
     type: MxField.type.TEXT,
-    id: 'myFieldId',
-    label: 'My Field Label',
+    id: 'username',
+    label: 'Username',
     required: true,
     visible: true,
     disable: false
   };
 
-  myFieldValue = '';
-
-  get myFormControl() {
-    return this.myForm.get('myFormControl');
-  }
+  emailField: MxField = {
+    type: MxField.type.EMAIL,
+    id: 'email',
+    label: 'Corporate Email',
+    required: true,
+    visible: true
+  };
 
   onControlChange(control: FormControl) {
-    console.log('control changed:', control);
-  }
-
-  onValueChange(value: any) {
-    console.log('value changed:', value);
+    console.log('Control updated:', control.value);
   }
 }
 ```
 
+---
 
-## Configuration
+## 🔧 Component API: `MxDefaultFieldComponent`
 
-### Validation Messages
-The **ValidationMessages** object defines the default validation messages used in the forms library. The `ValidationMessagesSlots` interface defines the properties of the object.
+`MxDefaultFieldComponent` is the base class for form field rendering, receiving configuration metadata and two-way control bindings.
 
-```ts
+### Inputs & Outputs
+| Property | Type | Direction | Description |
+| :--- | :--- | :---: | :--- |
+| `field` | `MxField.forAll` | `@Input()` | Field configuration object (`id`, `label`, `required`, `visible`, `disable`, `additionalValidations`) |
+| `value` | `any` | `@Input()` | Current value of the field |
+| `control` | `FormControl` | `@Input()` | Form control instance inherited from parent `FormGroup` |
+| `controlChange` | `EventEmitter<FormControl>` | `@Output()` | Emits when control state changes |
+| `valueChange` | `EventEmitter<any>` | `@Output()` | Emits when field value changes |
+
+### Methods
+- `emitResults(): void` — Broadcasts changes in `FormControl` and `value` properties to parent components.
+
+---
+
+## ⚙️ Configuration & Customization
+
+### Default Validation Messages
+The library includes standard validation strings defined in `ValidationMessages`:
+
+```typescript
 export const ValidationMessages: ValidationMessagesSlots = {
   EMAIL: 'Use a valid email address',
   REQUIRED: 'This field is required',
-  PHONE: 'This no looks like a phone',
-  CHAR_LIMIT: 'You exceeded character limit.'
+  PHONE: 'This does not look like a valid phone number',
+  CHAR_LIMIT: 'Character limit exceeded'
 };
-
 ```
 
-### Custom Validation Messages
-To use custom validation messages, you can provide a new object using the `VALIDATION_MESSAGES_CONFIG_TOKEN` injection token.
+### Custom Validation Messages Provider
+Override global validation messages using the `VALIDATION_MESSAGES_CONFIG_TOKEN` injection token:
 
-```ts
-import { VALIDATION_MESSAGES_CONFIG_TOKEN } from 'forms';
+```typescript
+import { NgModule } from '@angular/core';
+import { VALIDATION_MESSAGES_CONFIG_TOKEN } from '@marxa/forms';
 
 @NgModule({
   providers: [
     {
       provide: VALIDATION_MESSAGES_CONFIG_TOKEN,
       useValue: {
-        EMAIL: 'Please enter a valid email address',
-        REQUIRED: 'This field is required',
-        PHONE: 'Please enter a valid phone number',
-        CHAR_LIMIT: 'You have exceeded the character limit'
+        EMAIL: 'Please enter a valid corporate email address',
+        REQUIRED: 'This field is required for submission',
+        PHONE: 'Please enter a valid 10-digit phone number',
+        CHAR_LIMIT: 'Maximum character limit exceeded'
       }
     }
   ]
 })
-export class MyModule { }
+export class AppModule {}
 ```
 
-### `PasswordValidationsMessagesSlots`
-This configuration is used specifically for password validation messages. You can customize the messages by providing your own values for the `PasswordValidationsMessagesSlots` interface.
+### Password Policy Validation Configuration
+Customize password complexity messages via `PASSWORD_VALIDATION_MESSAGES_CONFIG`:
 
-To use this configuration, you need to follow these steps:
+```typescript
+import { NgModule } from '@angular/core';
+import { PASSWORD_VALIDATION_MESSAGES_CONFIG } from '@marxa/forms';
 
-1. Import the PasswordValidationsMessagesSlots interface and PASSWORD_VALIDATION_MESSAGES_CONFIG token from the @my-company/forms library.
-    ```ts
-    import { PasswordValidationsMessagesSlots, PASSWORD_VALIDATION_MESSAGES_CONFIG } from '@my-company/forms';
-    ```
+@NgModule({
+  providers: [
+    {
+      provide: PASSWORD_VALIDATION_MESSAGES_CONFIG,
+      useValue: {
+        MIN_LENGTH: 'Password must be at least 8 characters long',
+        MAX_LENGTH: 'Password must not exceed 64 characters',
+        CHARACTER_CASE: 'Password must contain both uppercase and lowercase letters',
+        NUMBER_REQUIRED: 'Password must contain at least one number',
+        SPECIAL_CHARACTERS_REQUIRED: 'Password must contain at least one special character'
+      }
+    }
+  ]
+})
+export class AppModule {}
+```
 
-2. Provide a custom value for the PASSWORD_VALIDATION_MESSAGES_CONFIG token in your module's providers config.
-    ```ts
-    @NgModule({
-      providers: [
-        {
-          provide: PASSWORD_VALIDATION_MESSAGES_CONFIG,
-          useValue: {
-            MIN_LENGTH: 'Password must be at least 8 characters long',
-            MAX_LENGTH: 'Password must not exceed 64 characters',
-            CHARACTER_CASE: 'Password must contain both uppercase and lowercase letters',
-            NUMBER_REQUIRED: 'Password must contain at least one number',
-            SPECIAL_CHARACTERS_REQUIRED: 'Password must contain at least one special character'
-          }
-        }
-      ]
-    })
-    export class MyModule { }
-    ```
+---
 
+## 📄 License
 
-### Contributing
-We welcome contributions to **@marxa/mx-forms**! If you would like to contribute, please open an issue or submit a pull request on our GitHub repository.
-
-### License
-**@marxa/mx-forms** is released under the MIT License.
+Distributed under the [MIT License](LICENSE). Created by [Jorge Guzmán (@jgu7man)](https://github.com/jgu7man).
